@@ -1,0 +1,31 @@
+{
+  "name": "izayoi.newton.gltf",
+  "displayName": "NewtonGltf",
+  "description": "NewtonGltf defines the glTF schema for NewtonSoft.JSON.",
+  "version": "1.0.0",
+  "type": "tool",
+  "category": "",
+  "keywords": [
+    "gltf",
+    "schema",
+    "JSON",
+    "Newtonsoft"
+  ],
+  "unity": "2018.4",
+  "unityRelease": "25f1",
+  "author": {
+    "name" : "Izayoi Jiichan"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/izayoijiichan/newton.gltf/tree/master/LICENSE.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/izayoijiichan/newton.gltf.git"
+  },
+  "dependencies": {
+    "jillejr.newtonsoft.json-for-unity": "12.0.301",
+    "izayoi.vgo.gltf": "1.0.0"
+  }
+}

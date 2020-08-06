@@ -1,0 +1,72 @@
+﻿// ----------------------------------------------------------------------
+// @Namespace : NewtonGltf.Serialization.JsonConverters
+// @Class     : GltfExtrasJsonConverter
+// ----------------------------------------------------------------------
+namespace NewtonGltf.Serialization.JsonConverters
+{
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    /// <summary>
+    /// glTF GltfExtras Json Converter
+    /// </summary>
+    public class GltfExtrasJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// Determines whether this instance can convert the specified object type.
+        /// </summary>
+        /// <param name="objectType">Type of the object.</param>
+        /// <returns></returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType == typeof(GltfExtras);
+        }
+
+        /// <summary>
+        /// Reads the JSON representation of the object.
+        /// </summary>
+        /// <param name="reader">The Newtonsoft.Json.JsonReader to read from.</param>
+        /// <param name="objectType">Type of the object.</param>
+        /// <param name="existingValue">The existing value of object being read.</param>
+        /// <param name="serializer">The calling serializer.</param>
+        /// <returns>The object value.</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            Dictionary<string, JRaw> dictionary = serializer.Deserialize<Dictionary<string, JRaw>>(reader);
+
+            if (dictionary == null)
+            {
+                return null;
+            }
+
+            GltfExtras extras = new GltfExtras();
+
+            extras.SetConverterDictionary(dictionary);
+
+            return extras;
+        }
+
+        /// <summary>
+        /// Writes the JSON representation of the object.
+        /// </summary>
+        /// <param name="writer">The Newtonsoft.Json.JsonWriter to write to.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="serializer">The calling serializer.</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            GltfExtras extras = value as GltfExtras;
+
+            Dictionary<string, JRaw> dictionary = extras.GetConverterDictionary();
+
+            serializer.Serialize(writer, dictionary);
+        }
+    }
+}
